@@ -29,7 +29,7 @@ function gameInit(){
 
     window.addEventListener('keydown',function(e){
         keys[e.keyCode] = true;
-        //console.log(e.keyCode);
+        console.log(e.keyCode);
     });
     window.addEventListener('keyup',function(e){
         keys[e.keyCode] = false;
@@ -67,6 +67,8 @@ class Player {
         this.h = 64;
         // 0 up , 1 left , 2 down , 3 right
         this.direction = 2;
+        // 0 walking , 1 attacking , 
+        this.status = 0;
         this.anim_timsStamp = 0;
         this.currentFrame = 0;
         this.walking = false;
@@ -77,16 +79,16 @@ class Player {
     update(){
         var dx = 0;
         var dy = 0;
-        if(keys && keys[87]){
+        if(keys && (keys[87] || keys[38])){
             dy -= 1;
         }
-        if(keys && keys[65]){
+        if(keys && (keys[65] || keys[37])){
             dx -= 1;
         }
-        if(keys && keys[83]){
+        if(keys && (keys[83] || keys[40])){
             dy += 1;
         }
-        if(keys && keys[68]){
+        if(keys && (keys[68] || keys[39])){
             dx += 1;
         }
 
